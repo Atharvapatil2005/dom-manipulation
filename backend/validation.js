@@ -1,11 +1,15 @@
  const zod=require("zod");
- app.use(zod.json());
 
- const createTodo=zod.objects({
+ const createTodo=zod.object({
     title:zod.string(),
     description:zod.string()
  })
 
- const updateTodo=zod.objects({
+ const updateTodo=zod.object({
     id:zod.string(),
  })
+
+ module.exports={
+    createTodo:createTodo,
+    updateTodo:updateTodo 
+ }
