@@ -1,6 +1,8 @@
 const express=require('express');
 const app=express();
+const cors=require("cors");
 app.use(express.json());
+app.use(cors());
 const {createTodo,updateTodo}=require("./validation");
 const {todo}=require("./database")
 
@@ -30,9 +32,9 @@ app.post("/todo",async function(req,res) {
 
 
 app.get("/todos", async function (req,res) {
-    // const todos= await todo.find({});
+    const todos= await todo.find({});
         res.json({
-            todos:[]
+            todos: todos
         })
     
 })
@@ -56,4 +58,6 @@ app.put("/completed",async function (req,res) {
     })
 })
 
-app.listen(3000);
+app.listen(3000,()=>{
+    console.log("server listening on port 3000")
+});
